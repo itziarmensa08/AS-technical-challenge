@@ -1,0 +1,19 @@
+<p>Users</p>
+
+<div *ngFor="let user of users">
+
+    <h3>
+        <a [title]="user.name + ' details'">
+            {{ user.name }}
+        </a>
+    </h3>
+
+    <p *ngIf="user.id">
+        DNI: {{ user.id }}
+    </p>
+
+    <button type="button" (click)="delete()">
+        Delete
+    </button>
+
+</div>
