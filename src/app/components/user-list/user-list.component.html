@@ -27,11 +27,24 @@
                 <td>{{user.email}}</td>
                 <td>{{user.id}}</td>
                 <td>
-                  <button (click)="deleteUser(user)" class="btn-danger">Delete</button>
+                  <button (click)="alertDeleteUser($event, user)" class="btn-danger">Delete</button>
+                </td>
+              </tr>              
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="13">
+                  <div class="pagination">
+                    <button class="paginate-btn" [disabled]="currentPage === 1" (click)="prevPage()"><</button>
+                    <span>{{ currentPage }}/{{ totalPages }}</span>
+                    <button class="paginate-btn" [disabled]="currentPage === totalPages" (click)="nextPage()">></button>
+                  </div>
                 </td>
               </tr>
-            </tbody>
+            </tfoot>
           </table>
         </div>
     </div>
 </div>
+
+

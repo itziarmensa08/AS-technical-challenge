@@ -76,3 +76,16 @@ td:last-child, th:last-child {
     background-color: #fcfafa; 
     cursor: pointer;
 }
+
+.paginate-btn{
+    background-color: rgb(216, 216, 216);
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 6px 6px;
+    text-decoration: none;
+    margin: 6px 6px;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 4px;
+    font-size: bold;
+}

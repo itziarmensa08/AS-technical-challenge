@@ -9,6 +9,9 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustomAlertComponent } from './components/custom-alert/custom-alert.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -16,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UserListComponent,
     NavigationComponent,
     AddUserComponent,
+    CustomAlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,10 +27,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
     RouterModule.forRoot([
       { path: '', component: UserListComponent },
       { path: 'addUser', component: AddUserComponent },
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

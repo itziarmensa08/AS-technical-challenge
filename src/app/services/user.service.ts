@@ -35,6 +35,12 @@ export class UserService {
         this.usersSubject.next(updatedUsers);
     }
 
+    deleteUser(userToDelete: User): void {
+        const currentUsers = this.usersSubject.value;
+        const updatedUsers = currentUsers.filter(user => user !== userToDelete);
+        this.usersSubject.next(updatedUsers);
+    }
+
     private handleError(error: any): Observable<any> {
         console.error('An error occurred', error);
         return of ([]);
