@@ -1,0 +1,25 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap');
+  </style>
+  <app-navigation></app-navigation>
+  <h1>ADD USER</h1>
+  
+  <form [formGroup]="form">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" formControlName="name" required>
+    </div>
+    <div>
+      <label for="surname">Surname:</label>
+      <input type="text" id="surname" name="surname" formControlName="surname" required>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" formControlName="email" required>
+    </div>
+    <div>
+      <label for="id">DNI:</label>
+      <input type="text" id="id" name="id" formControlName="id" required>
+    </div>
+    <button type="submit" (click)="addUser()">ADD</button>
+</form>

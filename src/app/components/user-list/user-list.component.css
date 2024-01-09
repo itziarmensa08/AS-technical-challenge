@@ -1,0 +1,78 @@
+h1 {
+    color: #000000;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+.btn-success {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 10px 13px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 4px;
+    font-family: 'Dosis', sans-serif;
+}
+.btn-add{
+    font-size: 25px;
+    padding: 8px 13px;
+    background-color: #d6d6d6;
+    color: #000000;
+    border: black;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+    
+.btn-danger, .btn-deleted, .btn-users {
+    background-color: rgb(170, 4, 4);
+    border: none;
+    color: white;
+    padding: 10px 13px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 4px;
+}
+  
+.btn-deleted {
+    background-color: rgb(240, 208, 208);
+    color: black;
+}
+  
+.btn-users {
+    background-color: rgb(229, 240, 208);
+    color: black;
+}
+    
+table {
+    font-family: 'Dosis', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+td, th {
+    text-align: left;
+    padding: 8px;
+    vertical-align: middle;
+}
+  
+th {
+    font-weight: bold;
+    background-color: #f2f2f2;
+}
+  
+td:last-child, th:last-child {
+    text-align: right;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #fcfafa; 
+    cursor: pointer;
+}

@@ -1,19 +1,37 @@
-<p>Users</p>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap');
+</style>
 
-<div *ngFor="let user of users">
+<app-navigation></app-navigation>
 
-    <h3>
-        <a [title]="user.name + ' details'">
-            {{ user.name }}
-        </a>
-    </h3>
-
-    <p *ngIf="user.id">
-        DNI: {{ user.id }}
-    </p>
-
-    <button type="button" (click)="delete()">
-        Delete
-    </button>
-
+<div class="container app">
+    <div class="row">
+        <div class="col-sm-8">
+          <h1>USERS</h1>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>DNI</th>              
+                <th>
+                  <button class="btn-add" (click)="addUser()">+</button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users; let i = index" (click)="editUser(user)">
+                <td>{{user.name}}</td>
+                <td>{{user.surname}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.id}}</td>
+                <td>
+                  <button (click)="deleteUser(user)" class="btn-danger">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
 </div>

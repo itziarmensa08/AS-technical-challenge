@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { users } from 'src/app/models/user';
+import { Router } from '@angular/router';
+import { User, users } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -7,10 +9,31 @@ import { users } from 'src/app/models/user';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent {
-  users = [...users];
+  users: User[] = [];
 
-  delete() {
-    window.alert('The user has been deleted');
+  constructor(private userService: UserService, private _router: Router) {}
+
+  ngOnInit() {
+    this.userService.getUsers().subscribe(
+      (data: User[]) => {
+        this.users = data;
+      },
+      error => {
+        console.error('Error loading users', error);
+      }
+    );
+  }
+
+  addUser() {
+    this._router.navigate(['/addUser']);
+  }
+
+  editUser(user: User) {
+    window.alert('Edit user');
+  }
+
+  deleteUser(user: User) {
+    window.alert('Delete user');
   }
 
 }
