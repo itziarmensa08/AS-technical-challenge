@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     CustomAlertComponent,
     UserProfileComponent,
     EditUserComponent,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     ReactiveFormsModule,
     MatDialogModule,
     RouterModule.forRoot([
-      { path: '', component: UserListComponent },
+      { path: '', component: FileUploadComponent },
+      { path: 'listUsers', component: UserListComponent },
       { path: 'addUser', component: AddUserComponent },
       { path: 'userProfile/:id', component: UserProfileComponent },
       { path: 'editUser/:id', component: EditUserComponent },

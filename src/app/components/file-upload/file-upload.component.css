@@ -1,0 +1,53 @@
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-icon {
+    background-image: url('src/assets/upload-icon.png'); 
+    height: 50px; 
+    width: 50px; 
+    margin: 0 auto 20px;
+    background-size: cover;
+    display: block; 
+}
+
+.upload-label {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload-container {
+    border: 2px dashed;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s;
+    width: 50%;
+    margin-top: 5%;
+}
+
+.upload-container:hover {
+    background-color: #f9f9f9;
+}
+
+.upload-button {
+    padding: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: #b5d9ff;
+    color: #030303;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.upload-button:hover {
+    background-color: #758699;
+}

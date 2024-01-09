@@ -1,0 +1,17 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap');
+</style>
+
+<app-navigation></app-navigation>
+
+<div class="center-container">
+    <div class="upload-container">
+        <input #fileInput type="file" id="file" (change)="onFileSelected($event)" hidden />
+        <label for="file" class="upload-label">
+            <div class="upload-icon"></div>
+            Drag and drop to upload
+            <button class="upload-button" (click)="browseFiles()">Upload file</button>
+            Only JSON files are supported
+        </label>
+    </div>
+</div>
