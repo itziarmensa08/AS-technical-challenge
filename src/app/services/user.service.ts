@@ -41,6 +41,17 @@ export class UserService {
         this.usersSubject.next(updatedUsers);
     }
 
+    updateUser(updatedUser: User): void {
+        const currentUsers = this.usersSubject.value;
+        const updatedUsers = currentUsers.map(user => {
+          if (user.id === updatedUser.id) {
+            return { ...user, ...updatedUser };
+          }
+          return user;
+        });
+        this.usersSubject.next(updatedUsers);
+    }
+
     deleteUser(userToDelete: User): void {
         const currentUsers = this.usersSubject.value;
         const updatedUsers = currentUsers.filter(user => user !== userToDelete);
