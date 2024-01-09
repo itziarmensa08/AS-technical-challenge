@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomAlertComponent } from './components/custom-alert/custom-alert.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     NavigationComponent,
     AddUserComponent,
     CustomAlertComponent,
+    UserProfileComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +35,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     RouterModule.forRoot([
       { path: '', component: UserListComponent },
       { path: 'addUser', component: AddUserComponent },
+      { path: 'userProfile/:id', component: UserProfileComponent },
+      { path: 'editUser/:id', component: EditUserComponent },
     ]),
     BrowserAnimationsModule
   ],

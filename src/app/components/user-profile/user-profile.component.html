@@ -1,0 +1,25 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap');
+</style>
+<app-navigation></app-navigation>
+<h1>USER PROFILE</h1>
+
+<form [formGroup]="form">
+    <div>
+        <label for="name">Name:</label>
+        <div class="detail">{{ form.get('name')?.value }}</div>
+    </div>
+    <div>
+        <label for="surname">Surname:</label>
+        <div class="detail">{{ form.get('surname')?.value }}</div>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <div class="detail">{{ form.get('email')?.value }}</div>
+    </div>
+    <div>
+        <label for="id">DNI:</label>
+        <div class="detail">{{ form.get('id')?.value }}</div>
+    </div>
+    <button type="submit" (click)="editUser()">Edit User</button>
+</form>

@@ -29,6 +29,12 @@ export class UserService {
         return this.usersSubject.asObservable();
     }
 
+    getUser(userId: string) {
+        const currentUsers = this.usersSubject.value;
+        const user = currentUsers.find(user => user.id == userId);
+        return user;
+    }
+
     addUser(newUser: User): void {
         const currentUsers = this.usersSubject.value;
         const updatedUsers = [...currentUsers, newUser];

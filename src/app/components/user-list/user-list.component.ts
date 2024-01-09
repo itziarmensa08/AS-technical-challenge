@@ -41,8 +41,8 @@ export class UserListComponent {
     this._router.navigate(['/addUser']);
   }
 
-  editUser(user: User) {
-    window.alert('Edit user');
+  userProfile(user: User) {
+    this._router.navigate([`/userProfile/${user.id}`]);
   }
 
   alertDeleteUser(event: Event, user: User): void {
