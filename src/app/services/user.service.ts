@@ -9,20 +9,11 @@ import { catchError } from 'rxjs/operators';
 })
 
 export class UserService {
-    private usersUrl = 'assets/users.json';
 
     private usersSubject = new BehaviorSubject<User[]>([]);
 
-    constructor(private http: HttpClient) {
-        this.loadUsers();
-    }
-
-    private loadUsers() {
-        this.http.get<User[]>(this.usersUrl)
-        .pipe(
-            catchError(this.handleError)
-        )
-        .subscribe(users => this.usersSubject.next(users));
+    setUsers(users: User[]): void {
+        this.usersSubject.next(users);
     }
 
     getUsers(): Observable<User[]> {

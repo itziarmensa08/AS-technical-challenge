@@ -1,4 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-file-upload',
@@ -9,6 +12,8 @@ export class FileUploadComponent {
   @ViewChild('fileInput') fileInput: ElementRef | undefined;
 
   selectedFile: File | null = null;
+
+  constructor(private userService: UserService, private _router: Router) {}
 
   onFileSelected(event: any) {
     const selectedFile = event.target.files[0];
@@ -22,13 +27,13 @@ export class FileUploadComponent {
         const reader = new FileReader();
         reader.onload = (e) => {
           const fileContent = e.target?.result as string;
-          // Implement your logic with the file content here
-          console.log('File Content:', fileContent);
+          const users: User[] = JSON.parse(fileContent); 
+          this.userService.setUsers(users);
+          this._router.navigate(['/listUsers']);
         };
         reader.readAsText(selectedFile);
       } else {
         alert('Please choose a valid .json file.');
-        // Clear the file input
         event.target.value = null;
         this.selectedFile = null;
       }
@@ -56,6 +61,10 @@ export class FileUploadComponent {
     if (this.fileInput) {
       this.fileInput.nativeElement.click();
     }
+  }
+
+  continue () {
+    this._router.navigate(['/listUsers']);
   }
 
 }

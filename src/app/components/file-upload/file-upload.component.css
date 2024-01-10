@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .upload-icon {
@@ -50,4 +51,8 @@
 
 .upload-button:hover {
     background-color: #758699;
+}
+
+.continue-button {
+    margin-top: 1rem;
 }

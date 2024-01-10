@@ -23,7 +23,7 @@ export class AddUserComponent {
 
   addUser():void{
     this._userService.addUser(this.form.value);
-    this._router.navigate(['/']);
+    this._router.navigate(['/listUsers']);
   }
 
 }

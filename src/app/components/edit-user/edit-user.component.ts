@@ -62,7 +62,7 @@ export class EditUserComponent {
         message: 'The changes were made correctly.',
         buttonAcceptText: 'OK',
         buttonCancelText: 'CANCEL',
-        onButtonAcceptClick: () => {this._router.navigate(['/']); this.dialog.closeAll()},
+        onButtonAcceptClick: () => {this._router.navigate(['/listUsers']); this.dialog.closeAll()},
         onButtonCancelClick: () => this.dialog.closeAll(),
       },
     });
