@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CustomAlertComponent } from '../custom-alert/custom-alert.component';
 import { PdfDownloadService } from 'src/app/services/pdf.service';
 import { jsPDF } from "jspdf";
+import autoTable from 'jspdf-autotable';
 import { ExcelDownloadService } from 'src/app/services/excel.service';
 import * as XLSX from 'xlsx';
 
@@ -114,13 +115,23 @@ export class UserListComponent {
 
   downloadPDF() {
     const doc = new jsPDF({
-      format: "a4"
+      format: 'a4'
     });
-    
-    const content = this.content.nativeElement;
-
-    doc.html(content.innerHTML);
-
+  
+    const columns = [
+      { title: "Name", dataKey: "name" },
+      { title: "Surname", dataKey: "surname" },
+      { title: "Email", dataKey: "email" },
+      { title: "DNI", dataKey: "id" },
+    ];
+  
+    const rows = this.totalUsers.map(user => [user.name, user.surname, user.email, user.id]);
+  
+    autoTable(doc, {
+      head: [columns.map(column => column.title)],
+      body: rows
+    });
+  
     doc.save('users.pdf');
   }
 
