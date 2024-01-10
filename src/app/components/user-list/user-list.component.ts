@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomAlertComponent } from '../custom-alert/custom-alert.component';
+import { PdfDownloadService } from 'src/app/services/pdf.service';
+import { jsPDF } from "jspdf";
+import { ExcelDownloadService } from 'src/app/services/excel.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-user-list',
@@ -12,15 +16,30 @@ import { CustomAlertComponent } from '../custom-alert/custom-alert.component';
 })
 export class UserListComponent {
   users: User[] = [];
+  totalUsers: User[] = [];
   showAlert: boolean = false;
   currentPage: number = 1;
   totalPages: number = 1; 
   limit: number = 5; 
 
-  constructor(private userService: UserService, private _router: Router, public dialog: MatDialog) {}
+  @ViewChild('content') content!: ElementRef;
+
+  constructor(
+    private userService: UserService, 
+    private _router: Router, 
+    public dialog: MatDialog,
+    private pdfDownloadService: PdfDownloadService,
+    private excelDownloadService: ExcelDownloadService,
+  ) {}
 
   ngOnInit() {
     this.loadUsers();
+    this.pdfDownloadService.getDownloadTrigger().subscribe(() => {
+      this.downloadPDF();
+    });
+    this.excelDownloadService.getDownloadTrigger().subscribe(() => {
+      this.downloadExcel();
+    });
   }
 
   loadUsers() {
@@ -30,6 +49,7 @@ export class UserListComponent {
       (data: User[]) => {
         this.calculateTotalPages(data);
         this.users = data.slice(startIndex, endIndex);
+        this.totalUsers = data;
       },
       error => {
         console.error('Error loading users', error);
@@ -90,5 +110,24 @@ export class UserListComponent {
       this.currentPage++;
     }
     this.loadUsers();
+  }
+
+  downloadPDF() {
+    const doc = new jsPDF({
+      format: "a4"
+    });
+    
+    const content = this.content.nativeElement;
+
+    doc.html(content.innerHTML);
+
+    doc.save('users.pdf');
+  }
+
+  downloadExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.totalUsers);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLSX.writeFile(wb, 'users.xlsx');
   }
 }

@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { User } from 'src/app/models/user';
-import { UserService } from 'src/app/services/user.service';
+import { ExcelDownloadService } from 'src/app/services/excel.service';
+import { PdfDownloadService } from 'src/app/services/pdf.service';
 
 @Component({
   selector: 'app-navigation',
@@ -11,23 +9,13 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavigationComponent {
 
-  users: User[] = [];
+  constructor(private pdfDownloadService: PdfDownloadService, private excelDownloadService: ExcelDownloadService) {}
 
-  constructor(private userService: UserService, private _router: Router, public dialog: MatDialog) {}
-
-  ngOnInit() {
-    this.loadUsers();
+  triggerPdfDownload() {
+    this.pdfDownloadService.triggerDownload();
   }
 
-  loadUsers() {
-    this.userService.getUsers().subscribe(
-      (data: User[]) => {
-        this.users = data;
-      },
-      error => {
-        console.error('Error loading users', error);
-      }
-    );
+  triggerExcelDownload() {
+    this.excelDownloadService.triggerDownload();
   }
-
 }
