@@ -2,7 +2,7 @@
 <div class="alert" [ngClass]="alertClass">
   {{ data.message }}
   <div class="buttons">
-    <button (click)="data.onButtonAcceptClick()">{{ data.buttonAcceptText }}</button>
     <button (click)="data.onButtonCancelClick($event)">{{ data.buttonCancelText }}</button>
+    <button (click)="data.onButtonAcceptClick()">{{ data.buttonAcceptText }}</button>
   </div>
 </div>

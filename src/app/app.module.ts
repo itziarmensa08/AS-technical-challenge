@@ -15,8 +15,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
-import { PdfDownloadService } from './services/pdf.service';
-import { ExcelDownloadService } from './services/excel.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +43,7 @@ import { ExcelDownloadService } from './services/excel.service';
     ]),
     BrowserAnimationsModule
   ],
-  providers: [PdfDownloadService, ExcelDownloadService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

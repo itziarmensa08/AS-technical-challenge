@@ -4,10 +4,8 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomAlertComponent } from '../custom-alert/custom-alert.component';
-import { PdfDownloadService } from 'src/app/services/pdf.service';
 import { jsPDF } from "jspdf";
 import autoTable from 'jspdf-autotable';
-import { ExcelDownloadService } from 'src/app/services/excel.service';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -17,7 +15,6 @@ import * as XLSX from 'xlsx';
 })
 export class UserListComponent {
   users: User[] = [];
-  totalUsers: User[] = [];
   showAlert: boolean = false;
   currentPage: number = 1;
   totalPages: number = 1; 
@@ -29,18 +26,10 @@ export class UserListComponent {
     private userService: UserService, 
     private _router: Router, 
     public dialog: MatDialog,
-    private pdfDownloadService: PdfDownloadService,
-    private excelDownloadService: ExcelDownloadService,
   ) {}
 
   ngOnInit() {
     this.loadUsers();
-    this.pdfDownloadService.getDownloadTrigger().subscribe(() => {
-      this.downloadPDF();
-    });
-    this.excelDownloadService.getDownloadTrigger().subscribe(() => {
-      this.downloadExcel();
-    });
   }
 
   loadUsers() {
@@ -50,7 +39,6 @@ export class UserListComponent {
       (data: User[]) => {
         this.calculateTotalPages(data);
         this.users = data.slice(startIndex, endIndex);
-        this.totalUsers = data;
       },
       error => {
         console.error('Error loading users', error);
@@ -111,34 +99,5 @@ export class UserListComponent {
       this.currentPage++;
     }
     this.loadUsers();
-  }
-
-  downloadPDF() {
-    const doc = new jsPDF({
-      format: 'a4'
-    });
-  
-    const columns = [
-      { title: "Name", dataKey: "name" },
-      { title: "Surname", dataKey: "surname" },
-      { title: "Email", dataKey: "email" },
-      { title: "DNI", dataKey: "id" },
-    ];
-  
-    const rows = this.totalUsers.map(user => [user.name, user.surname, user.email, user.id]);
-  
-    autoTable(doc, {
-      head: [columns.map(column => column.title)],
-      body: rows
-    });
-  
-    doc.save('users.pdf');
-  }
-
-  downloadExcel() {
-    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.totalUsers);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    XLSX.writeFile(wb, 'users.xlsx');
   }
 }
