@@ -4,9 +4,6 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomAlertComponent } from '../custom-alert/custom-alert.component';
-import { jsPDF } from "jspdf";
-import autoTable from 'jspdf-autotable';
-import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-user-list',
@@ -19,6 +16,7 @@ export class UserListComponent {
   currentPage: number = 1;
   totalPages: number = 1; 
   limit: number = 5; 
+  searchTerm: string = '';
 
   @ViewChild('content') content!: ElementRef;
 
@@ -35,10 +33,18 @@ export class UserListComponent {
   loadUsers() {
     const startIndex = (this.currentPage - 1) * this.limit;
     const endIndex = startIndex + this.limit;
+  
     this.userService.getUsers().subscribe(
       (data: User[]) => {
-        this.calculateTotalPages(data);
-        this.users = data.slice(startIndex, endIndex);
+        const filteredUsers = data.filter(user =>
+          user.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          user.surname.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          user.email.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          user.id.toString().includes(this.searchTerm)
+        );
+  
+        this.calculateTotalPages(filteredUsers);
+        this.users = filteredUsers.slice(startIndex, endIndex);
       },
       error => {
         console.error('Error loading users', error);
@@ -100,4 +106,10 @@ export class UserListComponent {
     }
     this.loadUsers();
   }
+
+  search() {
+    this.currentPage = 1; 
+    this.loadUsers();
+  }
+  
 }

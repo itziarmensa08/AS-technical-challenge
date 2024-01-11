@@ -89,3 +89,15 @@ td:last-child, th:last-child {
     border-radius: 4px;
     font-size: bold;
 }
+
+.search-container {
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.input-search {
+    width: 20%;
+    height: 30px;
+    border-radius: 5px;
+    border-color: #f2f2f2;
+}
