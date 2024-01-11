@@ -18,6 +18,11 @@ export class UserListComponent {
   limit: number = 5; 
   searchTerm: string = '';
 
+  sortConfig = {
+    column: 'name',
+    direction: 'asc' 
+  };
+
   @ViewChild('content') content!: ElementRef;
 
   constructor(
@@ -42,6 +47,17 @@ export class UserListComponent {
           user.email.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
           user.id.toString().includes(this.searchTerm)
         );
+  
+        filteredUsers.sort((a: any, b: any) => {
+          const columnA = a[this.sortConfig.column].toLowerCase();
+          const columnB = b[this.sortConfig.column].toLowerCase();
+  
+          if (this.sortConfig.direction === 'asc') {
+            return columnA.localeCompare(columnB);
+          } else {
+            return columnB.localeCompare(columnA);
+          }
+        });
   
         this.calculateTotalPages(filteredUsers);
         this.users = filteredUsers.slice(startIndex, endIndex);
@@ -109,6 +125,20 @@ export class UserListComponent {
 
   search() {
     this.currentPage = 1; 
+    this.loadUsers();
+  }
+
+  sortColumn(column: string): void {
+    if (this.sortConfig.column === column) {
+      // Cambiar la dirección si se hace clic en el mismo botón
+      this.sortConfig.direction = this.sortConfig.direction === 'asc' ? 'desc' : 'asc';
+    } else {
+      // Cambiar a una nueva columna y establecer la dirección predeterminada
+      this.sortConfig.column = column;
+      this.sortConfig.direction = 'asc';
+    }
+
+    // Volver a cargar los usuarios después de ordenar
     this.loadUsers();
   }
   

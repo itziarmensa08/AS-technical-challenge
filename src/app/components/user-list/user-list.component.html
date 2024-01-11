@@ -14,10 +14,22 @@
         <table #content class="table table-hover">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Surname</th>
-              <th>Email</th>
-              <th>DNI</th>              
+              <th>
+                <span class="column-text">Name</span>
+                <span (click)="sortColumn('name')" class="sort-icon" [class]="sortConfig.direction === 'asc' ? 'arrow-up' : 'arrow-down'"></span>
+              </th>
+              <th>
+                <span class="column-text">Surname</span>
+                <span (click)="sortColumn('surname')" class="sort-icon" [class]="sortConfig.direction === 'asc' ? 'arrow-up' : 'arrow-down'"></span>
+              </th>
+              <th>
+                <span class="column-text">Email</span>
+                <span (click)="sortColumn('email')" class="sort-icon" [class]="sortConfig.direction === 'asc' ? 'arrow-up' : 'arrow-down'"></span>
+              </th>
+              <th>
+                <span class="column-text">DNI</span>
+                <span (click)="sortColumn('id')" class="sort-icon" [class]="sortConfig.direction === 'asc' ? 'arrow-up' : 'arrow-down'"></span>
+              </th>
               <th>
                 <button class="btn-add" (click)="addUser()">+</button>
               </th>

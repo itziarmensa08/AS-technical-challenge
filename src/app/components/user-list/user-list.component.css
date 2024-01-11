@@ -101,3 +101,13 @@ td:last-child, th:last-child {
     border-radius: 5px;
     border-color: #f2f2f2;
 }
+
+.arrow-up::after {
+    content: '\2191'; 
+    margin-left: 5px;
+}
+  
+.arrow-down::after {
+    content: '\2193';
+    margin-left: 5px;
+}
