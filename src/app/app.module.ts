@@ -35,7 +35,8 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     ReactiveFormsModule,
     MatDialogModule,
     RouterModule.forRoot([
-      { path: '', component: FileUploadComponent },
+      { path: '', redirectTo: '/upload', pathMatch: 'full' },
+      { path: 'upload', component: FileUploadComponent },
       { path: 'listUsers', component: UserListComponent },
       { path: 'addUser', component: AddUserComponent },
       { path: 'userProfile/:id', component: UserProfileComponent },

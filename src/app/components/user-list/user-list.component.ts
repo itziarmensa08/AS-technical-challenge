@@ -130,15 +130,11 @@ export class UserListComponent {
 
   sortColumn(column: string): void {
     if (this.sortConfig.column === column) {
-      // Cambiar la dirección si se hace clic en el mismo botón
       this.sortConfig.direction = this.sortConfig.direction === 'asc' ? 'desc' : 'asc';
     } else {
-      // Cambiar a una nueva columna y establecer la dirección predeterminada
       this.sortConfig.column = column;
       this.sortConfig.direction = 'asc';
     }
-
-    // Volver a cargar los usuarios después de ordenar
     this.loadUsers();
   }
   
