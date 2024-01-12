@@ -24,8 +24,6 @@ Per últim, com a dos últimes opcions del menu, podem descarregar la llista en 
 
 ![image](https://github.com/itziarmensa08/AS-technical-challenge/assets/149383159/835c12c6-1911-4f1c-89c1-53b0776db713)
 
-#Runejar el projecte#
-
 Per tal de runejar el projecte només s'haurá introduïr per consola les següents comandes:
 
 npm install
